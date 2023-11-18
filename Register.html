@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mitr&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Mitr', sans-serif;
+        }
+    </style>
+
+    <script type="text/javascript">
+        const thaiNameRegex = /^[ก-๏\s]+$/;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        function input_username() {
+            let label_text = document.getElementById("label_name").innerText;
+            let username_value = document.getElementById("user_name").value;
+
+            if (thaiNameRegex.test(username_value)) {
+                console.log(label_text + ": " + username_value);
+            } else {
+                alert("ชื่อไม่ถูกต้อง (ใส่เฉพาะภาษาไทย)");
+            }
+        }
+
+        function input_usersurname() {
+            let label_text = document.getElementById("label_surname").innerText;
+            let usersurname_value = document.getElementById("user_surname").value;
+
+            if (thaiNameRegex.test(usersurname_value)) {
+                console.log(label_text + ": " + usersurname_value);
+            } else {
+                alert("นามสกุลไม่ถูกต้อง (ใส่เฉพาะภาษาไทย)");
+            }
+        }
+
+        function input_useremail() {
+            let label_text = document.getElementById("label_email").innerText;
+            let useremail_value = document.getElementById("user_email").value;
+
+            if (emailRegex.test(useremail_value)) {
+                console.log(label_text + ": " + useremail_value);
+            } else {
+                alert("อีเมลไม่ถูกต้อง");
+            }
+        }
+
+        function input_userphone() {
+            let label_text = document.getElementById("label_phone").innerText;
+            let userphone_value = document.getElementById("user_phone").value;
+
+            if (/^\d{10}$/.test(userphone_value)) {
+                console.log(label_text + ": " + userphone_value);
+            } else {
+                alert("กรุณาใส่หมายเลขโทรศัพท์ที่มีความยาว 10 ตัวเลข");
+            }
+        }
+
+        function input_usergender() {
+            let label_text = document.getElementById("label_sex").innerText;
+            let male_checked = document.getElementById("male").checked;
+            let female_checked = document.getElementById("female").checked;
+
+            if (male_checked) {
+                console.log(label_text + ": ชาย");
+            } else if (female_checked) {
+                console.log(label_text + ": หญิง");
+            } else {
+                console.log(label_text + ": ไม่ได้เลือกเพศ");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <section class="vh-100" style="background-color: #C1D8C3;">
+        <div class="container py-5">
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <img src="registration.png" alt="" width="120">
+            </div>
+            <h1 class="mb-4 text-center">ลงทะเบียน</h1>
+            <div class="card p-4" style="border-radius: 20px;">
+                <div class="card-body">
+                    <form method="POST" id="form_id" class="mx-auto">
+                        <div class="form-row">
+                            <div class="form-group col-6">
+                                <label id="label_name">ชื่อ</label>
+                                <input type="text" class="form-control" name="username" id="user_name"
+                                    onchange="input_username()">
+                            </div>
+                            <div class="form-group col-6">
+                                <label id="label_surname">นามสกุล</label>
+                                <input type="text" class="form-control" name="usersurname" id="user_surname"
+                                    onchange="input_usersurname()">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label id="label_email">อีเมล</label>
+                            <input type="email" class="form-control" name="useremail" id="user_email"
+                                onchange="input_useremail()" placeholder="example@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label id="label_phone">เบอร์โทร</label>
+                            <input type="tel" class="form-control" name="userphone" id="user_phone"
+                                onchange="input_userphone()">
+                        </div>
+
+                        <div class="form-group">
+                            <label id="label_sex">เพศ</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="female" value="female"
+                                    onchange="input_usergender()">
+                                <label class="form-check-label" for="female">หญิง</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="gender" id="male" value="male"
+                                    onchange="input_usergender()">
+                                <label class="form-check-label" for="male">ชาย</label>
+                            </div>
+                        </div>
+
+                        <div class="d-flex justify-content-center">
+                            <input type="submit" class="btn btn-success btn-lg" value="ยืนยันการลงทะเบียน" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
